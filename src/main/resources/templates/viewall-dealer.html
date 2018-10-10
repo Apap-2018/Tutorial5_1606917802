@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<title th:replace="fragments/fragment :: title"></title>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	
+		<h3>INFORMASI DEALER</h3>
+		<br></br>
+		<div th:each="dealer : ${dealer}">
+			<h3 th:text= "'Alamat: ' + ${dealer.alamat}"></h3>
+			<h3 th:text="'Telepon: ' + ${dealer.noTelp}"></h3>
+			<table>
+    			<tr>
+        			<th scope="col">Brand</th>
+        			<th scope="col">Price</th>
+        			<th scope="col">Amount</th>
+    			</tr>
+   				<tr th:each="listCar : ${dealer.listCar}">
+   					<td th:text="${listCar.brand}"></td>
+       				<td th:text="${listCar.price}"></td>
+       				<td th:text="${listCar.amount}"></td>
+   				</tr>
+   			</table>
+   			<h3>=============================================</h3>
+   		</div>
+   		<a th:href="@{/}">Kembali</a>
+	</body>
+</html>
